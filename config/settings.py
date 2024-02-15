@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     "users",
     "main",
+    "reviews",
 ]
 
 MIDDLEWARE = [
@@ -87,6 +88,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'diploma',
+#         'USER': 'postgres',
+#         'PASSWORD': '852799',
+#         'HOST': 'db'
+#     }
+# }
 
 
 # Password validation
