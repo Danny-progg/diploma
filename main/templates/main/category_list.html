@@ -8,14 +8,12 @@
                  src="{{ object.image|mediapath }}"
                  alt="Card image cap">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">
-                    {{ object.category }}</h4>
+                <h4 class="my-1 font-weight-normal">Специальность врача</h4>
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">{{ object.name|title }}</h1>
-                <ul class="list-unstyled mt-4 mb-4 text-start m-3">
-                    {{ object.description | truncatechars:100 }}
-                    Стоимость сеанса: {{ object.price|title }} руб.
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    кнопки
                 </ul>
                 <nav>
 
