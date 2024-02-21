@@ -12,11 +12,11 @@
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">{{ object.name|title }}</h1>
-                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                    кнопки
+                <ul class="list-unstyled mt-3 mb-4 text-start m-5">
+                    Врачи выбранной вами категории
                 </ul>
                 <nav>
-
+                    <a class="p-2 btn btn-outline-primary" href="{% url 'main:spec_doctors_list' object.pk %}">Посмотреть</a>
                 </nav>
             </div>
         </div>
