@@ -20,7 +20,7 @@
                     {% if perms.main.detail_doctor %}
                         <a class="p-2 btn btn-outline-primary" href="{% url 'main:doctors_detail' object.pk %}">Посмотреть</a>
                     {% endif %}
-                    {% if perms.main.change_update %}
+                    {% if perms.main.change_doctor %}
                         <a class="p-2 btn btn-outline-primary" href="{% url 'main:doctors_update_form' object.pk %}">Редактировать</a>
                     {% endif %}
                     {% if perms.main.delete_doctor %}

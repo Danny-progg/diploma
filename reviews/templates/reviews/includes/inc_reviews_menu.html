@@ -3,6 +3,8 @@
     <nav class="ms-5">
             <a class="p-2 btn btn-outline-primary" href="{% url 'main:doctors_list' %}">Врачи</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'main:category_list' %}">Услуги</a>
-            <a class="p-2 btn btn-outline-danger" href="">Написать отзыв</a>
+        {% if perms.reviews.detail_review %}
+            <a class="p-2 btn btn-outline-danger" href="{% url 'reviews:review_form' %}">Написать отзыв</a>
+        {% endif %}
     </nav>
 </div>

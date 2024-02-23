@@ -5,16 +5,22 @@
     <div class="col-4">
         <div class="card mb-4 box-shadow">
             <div class="card-header">
-                <h4 class="my-1 font-weight-normal">fffff</h4>
+                <h4 class="my-1 font-weight-normal">{{ object.name }}</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">ggg</h1>
+                <h1 class="card-title pricing-card-title">{{ object.title }}</h1>
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                    кнопки
+                    {{ object.review }}
                 </ul>
-                <nav>
-
-                </nav>
+                    {% if perms.reviews.detail_review %}
+                        <a class="p-2 btn btn-outline-primary" href="{% url 'reviews:review_detail' object.pk %}">Посмотреть</a>
+                    {% endif %}
+                    {% if perms.reviews.change_review %}
+                        <a class="p-2 btn btn-outline-primary" href="{% url 'reviews:review_update_form' object.pk %}">Редактировать</a>
+                    {% endif %}
+                    {% if perms.reviews.delete_review %}
+                        <a class="p-2 btn btn-outline-primary" href="{% url 'reviews:review_confirm_delete' object.pk %}">Удалить</a>
+                    {% endif %}
             </div>
         </div>
     </div>

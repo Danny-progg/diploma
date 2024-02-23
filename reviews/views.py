@@ -69,12 +69,12 @@ class ReviewsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
 class ReviewsDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Review
     permission_required = 'reviews.delete_review'
-    success_url = reverse_lazy('reviews:review_list')
+    success_url = reverse_lazy('reviews:reviews_list')
 
 
 class ReviewsDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Review
     permission_required = 'reviews.detail_review'
     form_class = ReviewForm
-    success_url = reverse_lazy('reviews:review_list')
+    success_url = reverse_lazy('reviews:reviews_list')
 
