@@ -8,7 +8,7 @@ from reviews.forms import ReviewForm
 from reviews.models import Review, Version
 
 
-class ReviewsListView(LoginRequiredMixin, ListView):
+class ReviewsListView(ListView):
     model = Review
     extra_context = {
         'title': 'Отзывы'
@@ -16,7 +16,7 @@ class ReviewsListView(LoginRequiredMixin, ListView):
     template_name = 'reviews/reviews_list.html'
 
 
-class ReviewsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class ReviewsCreateView(CreateView):
     model = Review
     permission_required = 'reviews.create_review'
     form_class = ReviewForm
@@ -41,7 +41,7 @@ class ReviewsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
         return super().form_valid(form)
 
 
-class ReviewsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class ReviewsUpdateView(UpdateView):
     model = Review
     permission_required = 'reviews.change_review'
     form_class = ReviewForm
@@ -66,13 +66,13 @@ class ReviewsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
         return super().form_valid(form)
 
 
-class ReviewsDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class ReviewsDeleteView(DeleteView):
     model = Review
     permission_required = 'reviews.delete_review'
     success_url = reverse_lazy('reviews:reviews_list')
 
 
-class ReviewsDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class ReviewsDetailView(DetailView):
     model = Review
     permission_required = 'reviews.detail_review'
     form_class = ReviewForm

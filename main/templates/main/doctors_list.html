@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 {% load my_tags %}
 {% block content %}
+{% if user.is_authenticated %}
   {% for object in object_list %}
     <div class="col-4">
         <div class="card mb-4 box-shadow">
@@ -24,4 +25,27 @@
         </div>
     </div>
   {% endfor %}
+{% else %}
+    {% for object in object_list %}
+    <div class="col-4">
+        <div class="card mb-4 box-shadow">
+            <img class="cardimg-top"
+                 src="{{ object.image|mediapath }}"
+                 alt="Card image cap">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">
+                    {{ object.category }}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ object.name|title }}</h1>
+                <ul class="list-unstyled mt-4 mb-4 text-start m-3">
+                    {{ object.description | truncatechars:100 }}
+                    Стоимость сеанса: {{ object.price|title }} руб.
+                </ul>
+                        <a class="p-2 btn btn-outline-primary" href="{% url 'main:doctors_detail' object.pk %}">Посмотреть</a>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+{% endif %}
 {% endblock %}

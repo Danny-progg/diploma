@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -16,7 +16,7 @@ def category(request):
     return render(request, 'main/category_list.html', context)
 
 
-class DoctorsListView(LoginRequiredMixin, ListView):
+class DoctorsListView(ListView):
     model = Doctors
     extra_context = {
         'title': 'Врачи'
@@ -24,7 +24,7 @@ class DoctorsListView(LoginRequiredMixin, ListView):
     template_name = 'main/doctors_list.html'
 
 
-class SpecificListView(LoginRequiredMixin, ListView):
+class SpecificListView(ListView):
     model = Doctors
     template_name = 'main/spec_doctors_list.html'
 
@@ -43,7 +43,7 @@ class SpecificListView(LoginRequiredMixin, ListView):
         return context_data
 
 
-class DoctorsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class DoctorsCreateView(CreateView):
     model = Doctors
     permission_required = 'main.create_doctor'
     form_class = DoctorForm
@@ -68,7 +68,7 @@ class DoctorsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
         return super().form_valid(form)
 
 
-class DoctorsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class DoctorsUpdateView(UpdateView):
     model = Doctors
     permission_required = 'main.change_doctor'
     form_class = DoctorForm
@@ -93,13 +93,13 @@ class DoctorsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
         return super().form_valid(form)
 
 
-class DoctorsDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class DoctorsDeleteView(DeleteView):
     model = Doctors
     permission_required = 'main.delete_doctor'
     success_url = reverse_lazy('main:doctors_list')
 
 
-class DoctorsDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class DoctorsDetailView(DetailView):
     model = Doctors
     permission_required = 'main.detail_doctor'
     form_class = DoctorForm

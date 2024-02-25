@@ -12,9 +12,7 @@
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     {{ object.review }}
                 </ul>
-                    {% if perms.reviews.detail_review %}
-                        <a class="p-2 btn btn-outline-primary" href="{% url 'reviews:review_detail' object.pk %}">Посмотреть</a>
-                    {% endif %}
+                <a class="p-2 btn btn-outline-primary" href="{% url 'reviews:review_detail' object.pk %}">Посмотреть</a>
         </div>
     </div>
   {% endfor %}
