@@ -83,22 +83,22 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 #
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'diploma',
-#         'USER': 'postgres',
-#         'PASSWORD': '852799',
-#         'HOST': 'db'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('NAME_DATABASE'),
+        'USER': os.getenv('USER_DATABASE'),
+        'PASSWORD': os.getenv('PASSWORD_DATABASE'),
+        'HOST': 'db'
+    }
+}
 
 
 # Password validation
@@ -153,15 +153,15 @@ AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
-CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
-
-if CACHE_ENABLED:
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": os.getenv('CACHE_LOCATION'),
-        }
-    }
+# CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
+#
+# if CACHE_ENABLED:
+#     CACHES = {
+#         "default": {
+#             "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#             "LOCATION": os.getenv('CACHE_LOCATION'),
+#         }
+#     }
 
 
 # CHANNEL_LAYERS = {
@@ -174,13 +174,13 @@ if CACHE_ENABLED:
 #     },
 # }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ],
+# }
+#
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+# }
